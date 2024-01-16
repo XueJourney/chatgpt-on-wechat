@@ -18,7 +18,7 @@ class OpenAIImage(object):
     def create_img(self, query, retry_count=0, api_key=None):
         try:
             if conf().get("rate_limit_dalle") and not self.tb4dalle.get_token():
-                return False, "请求太快了，请休息一下再问我吧"
+                return False, "请求太快了，请休息一下再问我吧\n反馈中心:https://txc.qq.com/products/621793"
             logger.info("[OPEN_AI] image_query={}".format(query))
             response = openai.Image.create(
                 api_key=api_key,
@@ -37,7 +37,7 @@ class OpenAIImage(object):
                 logger.warn("[OPEN_AI] ImgCreate RateLimit exceed, 第{}次重试".format(retry_count + 1))
                 return self.create_img(query, retry_count + 1)
             else:
-                return False, "画图出现问题，请休息一下再问我吧"
+                return False, "画图出现问题，请休息一下再问我吧\n反馈中心:https://txc.qq.com/products/621793"
         except Exception as e:
             logger.exception(e)
-            return False, "画图出现问题，请休息一下再问我吧"
+            return False, "画图出现问题，请休息一下再问我吧\n反馈中心:https://txc.qq.com/products/621793"

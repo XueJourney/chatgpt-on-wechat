@@ -33,14 +33,14 @@ available_setting = {
     "group_name_keyword_white_list": [],  # 开启自动回复的群名称关键词列表
     "group_chat_in_one_session": ["ChatGPT测试群"],  # 支持会话上下文共享的群名称
     "nick_name_black_list": [],  # 用户昵称黑名单
-    "group_welcome_msg": "",  # 配置新人进群固定欢迎语，不配置则使用随机风格欢迎 
+    "group_welcome_msg": "",  # 配置新人进群固定欢迎语，不配置则使用随机风格欢迎
     "trigger_by_self": False,  # 是否允许机器人触发
     "text_to_image": "dall-e-2",  # 图片生成模型，可选 dall-e-2, dall-e-3
     "image_proxy": True,  # 是否需要图片代理，国内访问LinkAI时需要
     "image_create_prefix": ["画", "看", "找"],  # 开启图片回复的前缀
     "concurrency_in_session": 1,  # 同一会话最多有多少条消息在处理中，大于1可能乱序
     "image_create_size": "256x256",  # 图片大小,可选有 256x256, 512x512, 1024x1024 (dall-e-3默认为1024x1024)
-    "group_chat_exit_group": False, 
+    "group_chat_exit_group": False,
     # chatgpt会话参数
     "expires_in_seconds": 3600,  # 无操作会话的过期时间
     # 人格描述

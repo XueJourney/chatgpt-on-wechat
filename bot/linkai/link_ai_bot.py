@@ -55,7 +55,7 @@ class LinkAIBot(Bot):
         if retry_count > 2:
             # exit from retry 2 times
             logger.warn("[LINKAI] failed after maximum number of retry times")
-            return Reply(ReplyType.TEXT, "请再问我一次吧")
+            return Reply(ReplyType.TEXT, "请再问我一次吧\n反馈中心:https://txc.qq.com/products/621793")
 
         try:
             # load config
@@ -139,7 +139,7 @@ class LinkAIBot(Bot):
                     logger.warn(f"[LINKAI] do retry, times={retry_count}")
                     return self._chat(query, context, retry_count + 1)
 
-                return Reply(ReplyType.TEXT, "提问太快啦，请休息一下再问我吧")
+                return Reply(ReplyType.TEXT, "提问太快啦，请休息一下再问我吧\n反馈中心:https://txc.qq.com/products/621793")
 
         except Exception as e:
             logger.exception(e)
@@ -215,7 +215,7 @@ class LinkAIBot(Bot):
             return {
                 "total_tokens": 0,
                 "completion_tokens": 0,
-                "content": "请再问我一次吧"
+                "content": "请再问我一次吧\n反馈中心:https://txc.qq.com/products/621793"
             }
 
         try:
@@ -263,7 +263,7 @@ class LinkAIBot(Bot):
                 return {
                     "total_tokens": 0,
                     "completion_tokens": 0,
-                    "content": "提问太快啦，请休息一下再问我吧"
+                    "content": "提问太快啦，请休息一下再问我吧\n反馈中心:https://txc.qq.com/products/621793"
                 }
 
         except Exception as e:
