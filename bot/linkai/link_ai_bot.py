@@ -40,7 +40,7 @@ class LinkAIBot(Bot):
                 reply = Reply(ReplyType.ERROR, res)
             return reply
         else:
-            reply = Reply(ReplyType.ERROR, "Bot不支持处理{}类型的消息".format(context.type))
+            reply = Reply(ReplyType.ERROR, "Bot不支持处理{}类型的消息\n请务必进行反馈，以帮助我们更好的优化AI。反馈中心:https://txc.qq.com/products/621793".format(context.type))
             return reply
 
     def _chat(self, query, context, retry_count=0) -> Reply:
@@ -54,7 +54,7 @@ class LinkAIBot(Bot):
         if retry_count > 2:
             # exit from retry 2 times
             logger.warn("[LINKAI] failed after maximum number of retry times")
-            return Reply(ReplyType.TEXT, "请再问我一次吧\n反馈中心:https://txc.qq.com/products/621793")
+            return Reply(ReplyType.TEXT, "请再问我一次吧\n请务必进行反馈，以帮助我们更好的优化AI。反馈中心:https://txc.qq.com/products/621793")
 
         try:
             # load config
@@ -155,7 +155,7 @@ class LinkAIBot(Bot):
                     logger.warn(f"[LINKAI] do retry, times={retry_count}")
                     return self._chat(query, context, retry_count + 1)
 
-                return Reply(ReplyType.TEXT, "提问太快啦，请休息一下再问我吧\n反馈中心:https://txc.qq.com/products/621793")
+                return Reply(ReplyType.TEXT, "提问太快啦，请休息一下再问我吧\n请务必进行反馈，以帮助我们更好的优化AI。反馈中心:https://txc.qq.com/products/621793")
 
         except Exception as e:
             logger.exception(e)
@@ -231,7 +231,7 @@ class LinkAIBot(Bot):
             return {
                 "total_tokens": 0,
                 "completion_tokens": 0,
-                "content": "请再问我一次吧\n反馈中心:https://txc.qq.com/products/621793"
+                "content": "请再问我一次吧\n请务必进行反馈，以帮助我们更好的优化AI。反馈中心:https://txc.qq.com/products/621793"
             }
 
         try:
@@ -279,7 +279,7 @@ class LinkAIBot(Bot):
                 return {
                     "total_tokens": 0,
                     "completion_tokens": 0,
-                    "content": "提问太快啦，请休息一下再问我吧\n反馈中心:https://txc.qq.com/products/621793"
+                    "content": "提问太快啦，请休息一下再问我吧\n请务必进行反馈，以帮助我们更好的优化AI。反馈中心:https://txc.qq.com/products/621793"
                 }
 
         except Exception as e:
@@ -323,7 +323,7 @@ class LinkAIBot(Bot):
 
         except Exception as e:
             logger.error(format(e))
-            return False, "画图出现问题，请休息一下再问我吧"
+            return False, "画图出现问题，请休息一下再问我吧\n请务必进行反馈，以帮助我们更好的优化AI。反馈中心:https://txc.qq.com/products/621793"
 
 
     def _fetch_knowledge_search_suffix(self, response) -> str:
