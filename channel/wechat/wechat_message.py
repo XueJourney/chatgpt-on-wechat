@@ -17,14 +17,19 @@ class WechatMessage(ChatMessage):
         if itchat_msg["Type"] == TEXT:
             self.ctype = ContextType.TEXT
             self.content = itchat_msg["Text"]
+            logger.debug("文本消息")
         elif itchat_msg["Type"] == VOICE:
             self.ctype = ContextType.VOICE
             self.content = TmpDir().path() + itchat_msg["FileName"]  # content直接存临时目录路径
             self._prepare_fn = lambda: itchat_msg.download(self.content)
+            logger.debug("语音消息")
         elif itchat_msg["Type"] == PICTURE and itchat_msg["MsgType"] == 3:
             self.ctype = ContextType.IMAGE
             self.content = TmpDir().path() + itchat_msg["FileName"]  # content直接存临时目录路径
             self._prepare_fn = lambda: itchat_msg.download(self.content)
+            itchat_msg.download(self.content)
+            logger.debug("图片消息：%s" % self.content)
+            # logger.debug("图片消息：%s" % itchat_msg)
         elif itchat_msg["Type"] == NOTE and itchat_msg["MsgType"] == 10000:
             if is_group and ("加入群聊" in itchat_msg["Content"] or "加入了群聊" in itchat_msg["Content"]):
                 # 这里只能得到nickname， actual_user_id还是机器人的id
@@ -41,7 +46,6 @@ class WechatMessage(ChatMessage):
                 self.ctype = ContextType.EXIT_GROUP
                 self.content = itchat_msg["Content"]
                 self.actual_user_nickname = re.findall(r"\"(.*?)\"", itchat_msg["Content"])[0]
-                    
             elif "你已添加了" in itchat_msg["Content"]:  #通过好友请求
                 self.ctype = ContextType.ACCEPT_FRIEND
                 self.content = itchat_msg["Content"]
